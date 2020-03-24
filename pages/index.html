@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PindeBin | Pinterest Shadow Control</title>
+    <style>
+
+       body{
+            padding:0;margin:0;
+            box-sizing: border-box;    
+            font-family: 'Courier New', Courier, monospace;
+            
+       }
+
+       header{
+           scroll-snap-align: start;
+            display:flex;
+           height:60px;
+           background:linear-gradient(to right,#0F2027,#0F2027);
+           border-bottom: 1px solid #2C5364;
+       }
+       header .logo{
+        font-size: 38px;
+        background: -webkit-linear-gradient(#d1aeae, #544455);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        padding:6px 0 10px 16px;
+       }
+
+       main{
+           height: 100vh;
+           overflow-y: auto;
+           scroll-snap-type: y mandatory;
+       }
+       main article{
+           height: 50vh;
+           scroll-snap-align: start;
+       }
+       
+       .item{
+           min-width:100%;
+           min-height:100vh;
+       }
+       .item.dank{
+           background: linear-gradient(#0F2027,#203A43,#2C5364);
+       }
+       .item.api{
+    
+        max-height: 50vh !important;
+        min-height: auto;
+       }
+       .item.app{
+        background: #536976;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #292E49, #536976);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #292E49, #536976); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        color:cornsilk;
+       }
+       
+       .flex{
+           display:flex;
+           align-items: center;
+           flex-direction: column;
+       }
+       .flex.flex-center{
+           align-items: center;
+           justify-content: center;
+       }
+       
+
+       img.img-icon{
+           transition: all 1s;
+           max-width:50vw;
+           max-height:30vh;
+           color:white;
+           filter: opacity(0.5) drop-shadow(0 0 0 white);
+       }
+       img.img-success{
+        filter: opacity(0.5) drop-shadow(0 0 0 green);
+       }
+       img.img-error{
+        filter: opacity(0.5) drop-shadow(0 0 0 red);
+       }
+
+       section{
+           padding:10px;
+       }
+       section.header{
+
+            color:white;
+       }
+       section.response{
+           display:flex;
+           flex-direction: column;
+           overflow: hidden;
+       }
+       .res{
+           text-align: center;
+           font-size:40px;
+       }
+       .res.error{
+           color:red;
+       }
+       .res.success{
+           color:green;
+       }
+       section.form{
+           color:white;
+          
+       }
+       section.form input{
+           padding:14px;
+           border-radius: 4px;
+           border:none;
+           font-size:20px;
+       }
+       .user{
+           font-size:20px;
+       }
+       .btnResult{
+           display:block;
+           position:relative;
+           margin:20px auto;
+            padding:12px 24px;
+            cursor: pointer;
+         
+           box-sizing: border-box;
+           
+       }
+       .text-light{color:white;}
+       .btnColor{
+        background: #FF512F;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #DD2476, #FF512F);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #DD2476, #FF512F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+       }
+
+       footer{
+           background-color:black;
+           color:white;
+           padding:10px;
+           text-align: right;
+           scroll-snap-align: end;
+           
+       }
+
+       .hayalet{
+           animation:hayalet 1s linear 1s 1 forwards;
+            animation-direction: alternate;
+           animation-fill-mode:forwards;
+       }
+       @keyframes hayalet {
+           to{
+                transform:scale(4);
+           }
+           from{
+               
+           }
+       }
+
+        content{
+                padding: 16px;
+            }
+       content a{
+
+        color:whitesmoke;
+        font-size:18px;
+       }
+
+
+    </style>
+
+</head>
+<body>
+    <main>
+    <header>
+        <div class="logo">
+            <a href="">PindeBin</a>
+        </div>
+    </header>
+    
+        <article class="item dank flex">
+            <section class="header">
+                <h1>SHADOW KONTROL</h1>
+            </section>
+            <section class="response">
+                <!--RESİM-->
+                <img class="img-icon" id="resultImage" src="https://pinshadow.herokuapp.com/public/images/shadowIcon.png">
+                <span class="res error" id="resultLabel"></span>
+            </section>
+
+            <section class="form">
+                <label for="user" class="user">Kullanıcı Adı</label>
+                <input type="text" name="user" placeholder="kullanıcı adı">
+                <button class="btnResult text-light btnColor" id="Kontrol">Kontrol Et</button>
+            </section>
+        </article>
+
+
+        <article class="item app flex flex-center">
+            <h1> Windows İçin İndir!</h1>
+            <img src="https://pinshadow.herokuapp.com/public/images/program-windows.png">
+            <content>
+                <a href="https://pinshadow.herokuapp.com/public/programs/PinterestShadowKontrol.rar" download>Şimdi İndir!</a>
+            </content>
+        </article>
+
+        <article class="item api">
+            
+            <h1 style="padding-left:5px">Api Kullanımı</h1>
+            <content>
+                <b>METHOD : GET</b>
+                <p style="padding:10px">
+                    <script>document.write(window.location.href)</script>api/user/<b>&lt;username&gt;</b>
+                    <br>
+                    &lt;username&gt; alanı kontrol edilecek pinterest kullanıcı adı ile değiştirilmelidir.
+                    <br>
+                    Geri dönüş formatı JSON'dur.
+                    <br>
+                    Örneğin;
+                    <pre>
+                    <code>
+                        {
+                            "status": "success",
+                            "result": "NO SHADOW"
+                        }
+                    </code>
+                </pre>
+                
+                </p>
+            </content>
+        </article>
+       
+
+      
+
+    <footer>
+        Telif hakları saklıdır. copyright © <script>document.write((new Date).getFullYear())</script>
+    </footer>
+
+
+    </main>
+
+    <script type="text/javascript">
+
+        const username = document.querySelector('input[name=user]');
+        const btnKontrol = document.getElementById('Kontrol');
+        const path = window.location.href + "api/user";
+        if(btnKontrol && username){
+            
+            btnKontrol.addEventListener('click',()=>{
+
+                let user = username.value.trim();
+                if(!user) return;
+
+                get(user,RenderPage)
+            });
+
+        }
+
+        function get(user,callback){
+            var xhttp;
+            if (window.XMLHttpRequest) {
+                // code for modern browsers
+                xhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    callback(JSON.parse(this.responseText))
+                }else{
+                    callback({
+                        status:"error"
+                    })
+                }
+            };
+            xhttp.open("GET",`${path}/${user}`, true);
+            xhttp.send();
+
+        }
+
+        function RenderPage(data){
+
+            let resultLabel,resultImage;
+            resultLabel = document.getElementById('resultLabel');
+            resultImage = document.getElementById('resultImage');
+            let dizi = {
+                error:"success",
+                success:"error"
+            };
+            if(resultImage && resultLabel){
+                if(resultImage.classList.contains("hayalet"))
+                        resultImage.classList.remove("hayalet");
+
+                resultLabel.textContent = data.result;
+                if(resultLabel.classList.contains(dizi[data.status]))
+                    resultLabel.classList.remove(dizi[data.status]);
+                resultLabel.classList.add(data.status);
+                if(resultImage.classList.contains("img-"+dizi[data.status]))
+                    resultImage.classList.remove("img-"+dizi[data.status]);
+                resultImage.classList.add("img-"+data.status);
+
+                if(data.status == "error"){
+                    resultImage.classList.add("hayalet");
+                }
+            }
+            
+           
+        }
+
+
+    </script>
+
+</body>
+</html>
